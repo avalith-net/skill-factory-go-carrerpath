@@ -8,9 +8,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//MongoCN is the database connection object
 var MongoCN = ConnectDatabase()
 var clientOptions = options.Client().ApplyURI("mongodb+srv://user1:contraseña1@cluster-careerpath.1yinv.mongodb.net/test")
 
+//ConnectDatabase performs the db connection
 func ConnectDatabase() *mongo.Client {
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
@@ -26,6 +28,7 @@ func ConnectDatabase() *mongo.Client {
 	return client
 }
 
+//ConnectionCheck is the db ping
 func ConnectionCheck() int {
 	err := MongoCN.Ping(context.TODO(), nil)
 	if err != nil {
