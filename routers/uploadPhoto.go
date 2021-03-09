@@ -27,11 +27,10 @@ func UploadPhoto(c *gin.Context) {
 	if err != nil || !status {
 		c.JSON(http.StatusBadRequest, gin.H{"error while loading the image: ": err.Error()})
 		return
-	} else {
-		err = c.SaveUploadedFile(file, "uploads/profile/"+UserID+"."+extension)
-		if err != nil {
-			log.Fatal(err)
-		}
+	}
+	err = c.SaveUploadedFile(file, "uploads/profile/"+UserID+"."+extension)
+	if err != nil {
+		log.Fatal(err)
 	}
 	c.JSON(http.StatusOK, fmt.Sprintf("file uploaded"))
 }
