@@ -20,7 +20,7 @@ func LoadProfilePicture(user models.User, ID string) (bool, error) {
 	register := make(map[string]interface{})
 
 	if len(user.ProfilePhoto) > 0 {
-		register["profile_picture"] = user.ProfilePhoto
+		register["profilePhoto"] = user.ProfilePhoto
 	}
 
 	updateString := bson.M{
