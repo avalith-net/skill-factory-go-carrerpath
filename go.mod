@@ -1,10 +1,12 @@
 module github.com/avalith-net/skill-factory-go-carrerpath
 
+// +heroku goVersion go1.16
 go 1.16
 
 require (
-	github.com/gorilla/mux v1.8.0
-	github.com/rs/cors v1.7.0
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gin-contrib/cors v1.3.1
+	github.com/gin-gonic/gin v1.6.3
 	go.mongodb.org/mongo-driver v1.4.6
-	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83 // indirect
+	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
 )
