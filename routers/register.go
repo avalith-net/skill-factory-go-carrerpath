@@ -31,16 +31,16 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("not a valid email"))
 		return
 	}
-	//Validate password. It needs at least, 1 upper case letter and 1 lower case
-	err := utils.ValidatePassword(user.Password)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error: ": err.Error()})
-		return
-	}
 	//check if the user already exists
 	_, finded, _ := database.CheckUserAlreadyExists(user.Email)
 	if finded {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is already in use"))
+		return
+	}
+	//Validate password. It needs at least, 1 upper case letter and 1 lower case
+	err := utils.ValidatePassword(user.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error: ": err.Error()})
 		return
 	}
 	_, status, err := database.RegisterService.InsertRegister(user)
