@@ -6,7 +6,7 @@ import (
 )
 
 //LoginTry check the db login
-func LoginTry(email, password string) (models.UserRegister, bool) {
+func LoginTry(email, password string) (models.User, bool) {
 	user, finded, _ := CheckUserAlreadyExists(email)
 	if !finded {
 		return user, finded

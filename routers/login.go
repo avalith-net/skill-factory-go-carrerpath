@@ -13,7 +13,7 @@ import (
 
 //Login perform the user login
 func Login(c *gin.Context) {
-	var user models.UserRegister
+	var user models.User
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"invalid email or password": err.Error()})

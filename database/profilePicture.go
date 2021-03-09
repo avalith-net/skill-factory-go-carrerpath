@@ -10,7 +10,7 @@ import (
 )
 
 //LoadProfilePicture upload the profile picture
-func LoadProfilePicture(user models.UserRegister, ID string) (bool, error) {
+func LoadProfilePicture(user models.User, ID string) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
@@ -19,8 +19,8 @@ func LoadProfilePicture(user models.UserRegister, ID string) (bool, error) {
 
 	register := make(map[string]interface{})
 
-	if len(user.ProfilePicture) > 0 {
-		register["profile_picture"] = user.ProfilePicture
+	if len(user.ProfilePhoto) > 0 {
+		register["profile_picture"] = user.ProfilePhoto
 	}
 
 	updateString := bson.M{

@@ -12,7 +12,7 @@ import (
 //Register creates the user register in the db
 func Register(c *gin.Context) {
 	lenPassword := 6
-	var user models.UserRegister
+	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"something went wrong with the given data: ": err.Error()})
 		return

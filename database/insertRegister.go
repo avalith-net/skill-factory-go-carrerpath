@@ -9,7 +9,7 @@ import (
 )
 
 type registerInterface interface {
-	InsertRegister(user models.UserRegister) (string, bool, error)
+	InsertRegister(user models.User) (string, bool, error)
 }
 
 type register struct{}
@@ -24,7 +24,7 @@ func init() {
 }
 
 //InsertRegister inserts the user data in the db
-func (service *register) InsertRegister(user models.UserRegister) (string, bool, error) {
+func (service *register) InsertRegister(user models.User) (string, bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	db := MongoCN.Database("careerpath")

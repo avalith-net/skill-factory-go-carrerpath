@@ -8,7 +8,7 @@ import (
 )
 
 //GenerateJWT generates the JWT for the authentication
-func GenerateJWT(user models.UserRegister) (string, error) {
+func GenerateJWT(user models.User) (string, error) {
 	privateKey := []byte("SkillFactoryGoAdvance_Avalith")
 
 	playload := jwt.MapClaims{

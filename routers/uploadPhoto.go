@@ -20,9 +20,9 @@ func UploadPhoto(c *gin.Context) {
 	}
 	//extract the file extension
 	var extension = strings.Split(file.Filename, ".")[1]
-	var user models.UserRegister
+	var user models.User
 	var status bool
-	user.ProfilePicture = UserID + "." + extension
+	user.ProfilePhoto = UserID + "." + extension
 	status, err = database.LoadProfilePicture(user, UserID)
 	if err != nil || !status {
 		c.JSON(http.StatusBadRequest, gin.H{"error while loading the image: ": err.Error()})
