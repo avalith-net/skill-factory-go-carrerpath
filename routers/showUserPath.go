@@ -20,5 +20,5 @@ func ShowUserPath(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error occurred looking the path": err.Error()})
 		return
 	}
-	c.JSON(http.StatusFound, path)
+	c.JSON(http.StatusOK, path)
 }
