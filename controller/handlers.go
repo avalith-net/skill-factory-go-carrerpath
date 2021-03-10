@@ -15,6 +15,7 @@ func LaunchingServer() {
 	router := gin.Default()
 	router.POST("/register", middlewares.CheckDB(), routers.Register)
 	router.POST("/login", middlewares.CheckDB(), routers.Login)
+	router.GET("/userpath", middlewares.CheckDB(), middlewares.ValidateJWT(), routers.ShowUserPath)
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
