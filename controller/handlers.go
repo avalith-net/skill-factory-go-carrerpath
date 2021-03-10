@@ -15,7 +15,6 @@ func LaunchingServer() {
 	router := gin.Default()
 	router.POST("/register", middlewares.CheckDB(), routers.Register)
 	router.POST("/login", middlewares.CheckDB(), routers.Login)
-	router.POST("/upload", middlewares.CheckDB(), middlewares.ValidateJWT(), routers.UploadPhoto)
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
