@@ -16,6 +16,8 @@ func LaunchingServer() {
 	router.POST("/register", middlewares.CheckDB(), routers.Register)
 	router.POST("/login", middlewares.CheckDB(), routers.Login)
 	router.GET("/userpath", middlewares.CheckDB(), middlewares.ValidateJWT(), routers.ShowUserPath)
+	router.POST("/passwordRecovery", middlewares.CheckDB(), routers.PasswordRecovery) //no esta creada
+
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
