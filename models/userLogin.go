@@ -11,6 +11,7 @@ import (
 type User struct {
 	ID             primitive.ObjectID    `bson:"_id,omitempty" form:"id"`
 	Role           string                `bson:"role" form:"role,omitempty"`
+	Leader         string                `bson:"leader" form:"leader,omitempty"`
 	Admin          bool                  `bson:"admin" form:"admin,omitempty"`
 	Name           string                `bson:"name" form:"name,omitempty"`
 	Surname        string                `bson:"surname" form:"surname,omitempty"`
