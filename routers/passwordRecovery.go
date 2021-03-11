@@ -11,7 +11,7 @@ import (
 func PasswordRecovery(c *gin.Context) {
 	var user models.User
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	if err := c.ShouldBind(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"invalid email": err.Error()})
 		return
 	}

@@ -38,12 +38,14 @@ func PasswordRecovery(userName string, email string) (string, error) {
 		message += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
 
-	t, err := template.ParseFiles("templateMail.html")
+	t, err := template.ParseFiles("utils/assets/templateMail.html")
 	checkError(err, "")
 
 	buf := new(bytes.Buffer)
+	fmt.Println("AKLSHJDALJSDÑALKSJDLASJDALSDJALSDJ")
 	err = t.Execute(buf, dest)
-	checkError(err, "") // agregar errores
+	fmt.Println("PASOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+	checkError(err, "")
 
 	message += buf.String()
 
@@ -73,7 +75,6 @@ func PasswordRecovery(userName string, email string) (string, error) {
 	checkError(err, "")
 
 	w, err := client.Data()
-	checkError(err, "")
 
 	_, err = w.Write([]byte(message))
 	checkError(err, "")
