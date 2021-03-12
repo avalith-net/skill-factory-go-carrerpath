@@ -1,8 +1,10 @@
 package routers
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/avalith-net/skill-factory-go-carrerpath/database"
 	"github.com/avalith-net/skill-factory-go-carrerpath/models"
 	"github.com/avalith-net/skill-factory-go-carrerpath/utils"
 	"github.com/gin-gonic/gin"
@@ -13,6 +15,13 @@ func PasswordRecovery(c *gin.Context) {
 
 	if err := c.ShouldBind(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"invalid email": err.Error()})
+		return
+	}
+
+	//Antes de enviar el mail, chequea si es un mail ya registrado, sino devuelve el error
+	_, finded, _ := database.CheckUserAlreadyExists(user.Email)
+	if !finded {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is not registered"))
 		return
 	}
 

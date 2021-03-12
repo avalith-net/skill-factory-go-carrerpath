@@ -20,8 +20,8 @@ func checkError(err error, message string) {
 }
 
 func PasswordRecovery(userName string, email string) (string, error) {
-	from := mail.Address{"CareerPath", "careerpath.avalith@gmail.com"}
-	to := mail.Address{userName, email} //cambiar dependiendo del usuario que quiera recuperar la contraseña
+	from := mail.Address{Name: "CareerPath", Address: "careerpath.avalith@gmail.com"}
+	to := mail.Address{Name: userName, Address: email} //cambiar dependiendo del usuario que quiera recuperar la contraseña
 	subject := "Recuperacion de Contraseña"
 
 	dest := Dest{Name: to.Address}
