@@ -28,6 +28,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("invalid user or password"))
 		return
 	}
+
 	jwtKey, err := jwt.GenerateJWT(userDB)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error when trying to generate the token: ": err.Error()})
