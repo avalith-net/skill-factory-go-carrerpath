@@ -82,6 +82,6 @@ func PasswordRecovery(userName string, email string) (string, error) {
 
 	client.Quit()
 
-	return "Email enviado con exito.", nil
+	return "Email successfully sent,  please check your inbox for a link to complete the reset.", nil
 
 }

@@ -18,6 +18,11 @@ func PasswordRecovery(c *gin.Context) {
 		return
 	}
 
+	if len(user.Email) < 1 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("please write your email"))
+		return
+	}
+
 	//Antes de enviar el mail, chequea si es un mail ya registrado, sino devuelve el error
 	_, finded, _ := database.CheckUserAlreadyExists(user.Email)
 	if !finded {
