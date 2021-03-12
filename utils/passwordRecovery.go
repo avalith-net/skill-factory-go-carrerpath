@@ -39,13 +39,11 @@ func PasswordRecovery(userName string, email string) (string, error) {
 	}
 
 	t, err := template.ParseFiles("utils/assets/templateMail.html")
-	checkError(err, "")
+	checkError(err, "error in the template html")
 
 	buf := new(bytes.Buffer)
-	fmt.Println("AKLSHJDALJSDÑALKSJDLASJDALSDJALSDJ")
 	err = t.Execute(buf, dest)
-	fmt.Println("PASOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-	checkError(err, "")
+	checkError(err, "error in the execute")
 
 	message += buf.String()
 
@@ -60,27 +58,27 @@ func PasswordRecovery(userName string, email string) (string, error) {
 	}
 
 	conn, err := tls.Dial("tcp", servername, tlsConfig)
-	checkError(err, "")
+	checkError(err, "error in the tlsConfig")
 
 	client, err := smtp.NewClient(conn, host)
-	checkError(err, "")
+	checkError(err, "error in the client create")
 
 	err = client.Auth(auth)
-	checkError(err, "")
+	checkError(err, "error in the authorization")
 
 	err = client.Mail(from.Address)
-	checkError(err, "")
+	checkError(err, "error in the address (from)")
 
 	err = client.Rcpt(to.Address)
-	checkError(err, "")
+	checkError(err, "error in the address (to)")
 
 	w, err := client.Data()
 
 	_, err = w.Write([]byte(message))
-	checkError(err, "")
+	checkError(err, "error in the write")
 
 	err = w.Close()
-	checkError(err, "")
+	checkError(err, "error in the close")
 
 	client.Quit()
 
