@@ -13,10 +13,11 @@ import (
 //LaunchingServer seteo mi puerto, el handler y pongo a escuchar al servidor
 func LaunchingServer() {
 	router := gin.Default()
-	router.POST("/register", middlewares.CheckDB(), routers.Register)
-	router.POST("/login", middlewares.CheckDB(), routers.Login)
-	router.GET("/userpath", middlewares.CheckDB(), middlewares.ValidateJWT(), routers.ShowUserPath)
-	router.POST("/passwordRecovery", middlewares.CheckDB(), routers.PasswordRecovery)
+	router.Use(middlewares.CheckDB())
+	router.POST("/register", routers.Register)
+	router.POST("/login", routers.Login)
+	router.GET("/userpath", middlewares.ValidateJWT(), routers.ShowUserPath)
+	router.POST("/passwordRecovery", routers.PasswordRecovery)
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
