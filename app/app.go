@@ -2,7 +2,6 @@ package app
 
 import (
 	"log"
-	"os"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
 	"github.com/gin-contrib/cors"
@@ -19,10 +18,6 @@ func StartApp() {
 		return
 	}
 	mapUrls()
-	PORT := os.Getenv("PORT")
-	if PORT == "" {
-		PORT = "8080"
-	}
 	router.Use(cors.Default())
-	log.Fatal(router.Run(":" + PORT))
+	log.Fatal(router.Run())
 }
