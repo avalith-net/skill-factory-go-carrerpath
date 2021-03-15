@@ -35,6 +35,9 @@ func ValidatePassword(password string) error {
 	if len(password) < minPassLength {
 		AppendError(fmt.Sprintf("password length must be at least %d", minPassLength))
 	}
+	if len(password) == 0 {
+		return fmt.Errorf("missing password")
+	}
 	if len(ErrorString) != 0 {
 		return fmt.Errorf(ErrorString)
 	}
