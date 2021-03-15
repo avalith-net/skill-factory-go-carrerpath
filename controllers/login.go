@@ -11,7 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Login perform the user login
+//Login godoc
+// @Summary Enter the system
+// @Description get the email and password to access
+// @User get-struct-by-json
+// @Accept  json
+// @Produce json
+// @Success 200 {string} Token
+// @Header 200 {string} Token "jwtKey"
+// @Router /login [post]
 func Login(c *gin.Context) {
 	var user models.User
 
