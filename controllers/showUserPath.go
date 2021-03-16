@@ -15,7 +15,7 @@ func ShowUserPath(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("missing id parameter"))
 		return
 	}
-	path, err := database.SummaryUserPath(ID)
+	path, err := database.UserPath.SummaryUserPath(ID)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error occurred looking the path": err.Error()})
 		return
