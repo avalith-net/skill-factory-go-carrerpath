@@ -31,7 +31,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("email is required"))
 		return
 	}
-	userDB, exist := database.LoginTry(user.Email, user.Password)
+	userDB, exist := database.Login.LoginTry(user.Email, user.Password)
 	if !exist {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("invalid user or password"))
 		return

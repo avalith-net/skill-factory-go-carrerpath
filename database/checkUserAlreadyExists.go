@@ -8,8 +8,19 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+var (
+	CheckUser checkUserInterface = &checkUser{}
+)
+
+type checkUser struct {
+}
+
+type checkUserInterface interface {
+	CheckUserAlreadyExists(string) (models.User, bool, string)
+}
+
 //CheckUserAlreadyExists receives the email and check if it is in the db
-func CheckUserAlreadyExists(email string) (models.User, bool, string) {
+func (user *checkUser) CheckUserAlreadyExists(email string) (models.User, bool, string) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	db := MongoCN.Database("careerpath")

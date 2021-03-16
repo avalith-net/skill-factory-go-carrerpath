@@ -24,7 +24,7 @@ func Register(c *gin.Context) {
 		return
 	}
 	//check if the user already exists
-	_, finded, _ := database.CheckUserAlreadyExists(user.Email)
+	_, finded, _ := database.CheckUser.CheckUserAlreadyExists(user.Email)
 	if finded {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is already in use"))
 		return

@@ -16,12 +16,8 @@ type register struct{}
 
 var (
 	//RegisterService is the reference variable to the register interface
-	RegisterService registerInterface
+	RegisterService registerInterface = &register{}
 )
-
-func init() {
-	RegisterService = &register{}
-}
 
 //InsertRegister inserts the user data in the db
 func (service *register) InsertRegister(user models.User) (string, bool, error) {

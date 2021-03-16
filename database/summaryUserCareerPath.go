@@ -10,8 +10,18 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+var (
+	UserPath userPathInterface = &userPath{}
+)
+
+type userPath struct{}
+
+type userPathInterface interface {
+	SummaryUserPath(string) (models.Path, error)
+}
+
 //SummaryUserPath shows a summary of a given user career path
-func SummaryUserPath(ID string) (models.Path, error) {
+func (user *userPath) SummaryUserPath(ID string) (models.Path, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel() // releases resources if slowOperation completes before timeout elapses
 	db := MongoCN.Database("careerpath")
