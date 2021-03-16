@@ -22,7 +22,7 @@ func checkError(err error, message string) {
 func PasswordRecovery(userName string, email string) (string, error) {
 	from := mail.Address{Name: "CareerPath", Address: "careerpath.avalith@gmail.com"}
 	to := mail.Address{Name: userName, Address: email}
-	subject := "Password Recovery "
+	subject := "Password Recovery"
 
 	dest := Dest{Name: to.Address}
 

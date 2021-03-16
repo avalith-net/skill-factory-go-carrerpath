@@ -10,6 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//PasswordRecovery godoc
+// @Summary recovery the password if dont remember
+// @Description send email at the person what forgot the password
+// @User get-struct-by-json
+// @Accept  json
+// @Produce html
+// @Success 200 {string} html
+// @Header 200 {string} Token "jwtKey"
+// @Router /passwordRecovery [post]
 func PasswordRecovery(c *gin.Context) {
 	var user models.User
 

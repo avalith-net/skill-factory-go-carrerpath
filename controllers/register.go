@@ -12,7 +12,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Register creates the user register in the db
+//Register godoc
+// @Summary creates the user register in the db
+// @Description ask for email and password for register in the app
+// @User get-struct-by-json
+// @Accept  json
+// @Produce json
+// @Success 200 {string} Token
+// @Header 200 {string} Token "jwtKey"
+// @Router /register [get]
 func Register(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBind(&user); err != nil {
