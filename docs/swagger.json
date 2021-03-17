@@ -1,0 +1,34 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/login": {
+            "post": {
+                "description": "get the email and password to access",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enter the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,9 +5,19 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+var (
+	Login loginInterface = &login{}
+)
+
+type login struct{}
+
+type loginInterface interface {
+	LoginTry(string, string) (models.User, bool)
+}
+
 //LoginTry check the db login
-func LoginTry(email, password string) (models.User, bool) {
-	user, finded, _ := CheckUserAlreadyExists(email)
+func (login *login) LoginTry(email, password string) (models.User, bool) {
+	user, finded, _ := CheckUser.CheckUserAlreadyExists(email)
 	if !finded {
 		return user, finded
 	}

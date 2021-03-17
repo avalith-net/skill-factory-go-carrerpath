@@ -1,4 +1,4 @@
-package routers
+package jwt
 
 import (
 	"errors"
@@ -30,7 +30,7 @@ func ProcessToken(token string) (*models.Claim, bool, string, error) {
 	})
 	//at this point, if we have a valid token, we need to check if the email coming with the token is valid
 	if err == nil {
-		_, finded, _ := database.CheckUserAlreadyExists(claims.Email)
+		_, finded, _ := database.CheckUser.CheckUserAlreadyExists(claims.Email)
 		if finded == true {
 			Email = claims.Email
 			UserID = claims.ID.Hex()

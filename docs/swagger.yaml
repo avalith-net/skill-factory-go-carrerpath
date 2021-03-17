@@ -1,0 +1,21 @@
+info:
+  contact: {}
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: get the email and password to access
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Token:
+              description: jwtKey
+              type: string
+          schema:
+            type: string
+      summary: Enter the system
+swagger: "2.0"

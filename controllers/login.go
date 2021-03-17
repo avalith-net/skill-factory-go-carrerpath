@@ -1,4 +1,4 @@
-package routers
+package controllers
 
 import (
 	"fmt"
@@ -11,7 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Login perform the user login
+//Login godoc
+// @Summary Enter the system
+// @Description get the email and password to access
+// @User get-struct-by-json
+// @Accept  json
+// @Produce json
+// @Success 200 {string} Token
+// @Header 200 {string} Token "jwtKey"
+// @Router /login [post]
 func Login(c *gin.Context) {
 	var user models.User
 
@@ -23,11 +31,12 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("email is required"))
 		return
 	}
-	userDB, exist := database.LoginTry(user.Email, user.Password)
+	userDB, exist := database.Login.LoginTry(user.Email, user.Password)
 	if !exist {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("invalid user or password"))
 		return
 	}
+
 	jwtKey, err := jwt.GenerateJWT(userDB)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error when trying to generate the token: ": err.Error()})
