@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
-	"github.com/avalith-net/skill-factory-go-carrerpath/jwt"
+	"github.com/avalith-net/skill-factory-go-carrerpath/routers"
 	"github.com/avalith-net/skill-factory-go-carrerpath/utils"
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +26,7 @@ The parameter CheckPermissions(string) is not case sensitive
 func CheckPermissions(wantedPermission string) gin.HandlerFunc {
 	
 	return func(c *gin.Context) {
-		_, _, id, err := jwt.ProcessToken(c.GetHeader("Authorization"))
+		_, _, id, err := routers.ProcessToken(c.GetHeader("Authorization"))
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error in token: ": err.Error()})
 			c.AbortWithStatus(401)
