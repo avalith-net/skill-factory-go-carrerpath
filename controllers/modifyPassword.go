@@ -18,13 +18,7 @@ func ModifyUserPassword(c *gin.Context) {
 		return
 	}
 
-	_, finded, ID := database.CheckUser.CheckUserAlreadyExists(jwt.Email)
-	if !finded {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is not registered"))
-		return
-	}
-
-	if _, err := database.PasswordUpdate(user, ID); err != nil {
+	if _, err := database.PasswordUpdate(user, jwt.UserID); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"couldn't update password ": err.Error()})
 		return
 	}
