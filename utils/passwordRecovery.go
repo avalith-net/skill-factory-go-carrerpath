@@ -10,7 +10,8 @@ import (
 )
 
 type Dest struct {
-	Name string
+	Name        string
+	NewPassword string
 }
 
 func checkError(err error, message string) {
@@ -19,12 +20,16 @@ func checkError(err error, message string) {
 	}
 }
 
-func PasswordRecovery(userName string, email string) (string, error) {
+func PasswordRecovery(userName string, email string) (string, string, error) {
 	from := mail.Address{Name: "CareerPath", Address: "careerpath.avalith@gmail.com"}
 	to := mail.Address{Name: userName, Address: email}
 	subject := "Password Recovery"
 
-	dest := Dest{Name: to.Address}
+	newPassword := passwordGenerated(3, 2, 4, 3)
+
+	dest := Dest{Name: to.Address, NewPassword: newPassword}
+
+	// dest := Dest{Name: to.Address}
 
 	headers := make(map[string]string)
 	headers["From"] = from.String()
@@ -82,6 +87,6 @@ func PasswordRecovery(userName string, email string) (string, error) {
 
 	client.Quit()
 
-	return "Email successfully sent,  please check your inbox for a link to complete the reset.", nil
+	return "Email successfully sent,  please check your inbox for a link to complete the reset.", newPassword, nil
 
 }

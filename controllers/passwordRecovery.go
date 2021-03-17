@@ -33,16 +33,22 @@ func PasswordRecovery(c *gin.Context) {
 	}
 
 	//Antes de enviar el mail, chequea si es un mail ya registrado, sino devuelve el error
-	_, finded, _ := database.CheckUser.CheckUserAlreadyExists(user.Email)
+	_, finded, ID := database.CheckUser.CheckUserAlreadyExists(user.Email)
 	if !finded {
 		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is not registered"))
 		return
 	}
 
-	msj, err := utils.PasswordRecovery(user.Name, user.Email)
-
+	msj, newPass, err := utils.PasswordRecovery(user.Name, user.Email)
+	user.Password = newPass
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"invalid ": err.Error()})
+		return
+	}
+	_, err = database.PasswordUpdate(user, ID)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"couldn't update password ": err.Error()})
 		return
 	}
 
