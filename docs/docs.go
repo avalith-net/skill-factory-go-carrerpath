@@ -36,6 +36,50 @@ var doc = `{
                 "summary": "Enter the system",
                 "responses": {
                     "200": {
+                        "description": "Success Login",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid login",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "invalid login",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/passwordRecovery": {
+            "post": {
+                "description": "send email at the person what forgot the password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "summary": "recovery the password if dont remember",
+                "responses": {
+                    "200": {
                         "description": "OK",
                         "schema": {
                             "type": "string"
@@ -45,6 +89,68 @@ var doc = `{
                                 "type": "string",
                                 "description": "jwtKey"
                             }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid email, please write your email or the given email is not registered",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "invalid email, please write your email or the given email is not registered",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error processing password recovery",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "get": {
+                "description": "ask for email and password for register in the app",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "creates the user register in the db",
+                "responses": {
+                    "200": {
+                        "description": "user successfully registered",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "something went wrong with the given data, error or the given email is already in use",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "something went wrong with the given data, error or the given email is already in use",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error in register",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
