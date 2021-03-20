@@ -8,7 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//ShowUserPath shows a given user career path
+//ShowUserPath
+// @Summary shows a given user career path
+// @Description get user careerpath
+// @User get-struct-by-json
+// @Accept  json
+// @Produce json
+// @Success 200 {string} http.StatusOK "success show careerpath"
+// @Header 200 {string} Token "jwtKey"
+// @Failure 400 {string} http.StatusBadRequest "missing id parameter"
+// @Failure 404 {string} http.StatusNotFound "error occurred looking the path"
+// @Failure default {string} http.StatusBadRequest "Error show user path "
+// @Router /login [post]
 func ShowUserPath(c *gin.Context) {
 	ID := c.Query("id")
 	if len(ID) < 1 {

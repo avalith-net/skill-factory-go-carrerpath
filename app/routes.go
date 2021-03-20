@@ -30,5 +30,7 @@ func mapUrls() {
 	router.PUT("/modifyPassword", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.ModifyUserPassword)
 
 	//use ginSwagger middleware to serve the API docs
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
+
 }
