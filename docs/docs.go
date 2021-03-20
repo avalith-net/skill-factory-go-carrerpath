@@ -26,17 +26,17 @@ var doc = `{
     "paths": {
         "/login": {
             "post": {
-                "description": "get user careerpath",
+                "description": "get the email and password to access",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "shows a given user career path",
+                "summary": "Enter the system",
                 "responses": {
                     "200": {
-                        "description": "success show careerpath",
+                        "description": "Success Login",
                         "schema": {
                             "type": "string"
                         },
@@ -48,19 +48,19 @@ var doc = `{
                         }
                     },
                     "400": {
-                        "description": "missing id parameter",
+                        "description": "invalid login",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "404": {
-                        "description": "error occurred looking the path",
+                        "description": "invalid login",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "default": {
-                        "description": "Error show user path ",
+                        "description": "error",
                         "schema": {
                             "type": "string"
                         }

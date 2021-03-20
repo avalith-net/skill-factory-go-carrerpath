@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/avalith-net/skill-factory-go-carrerpath/controllers"
+	_ "github.com/avalith-net/skill-factory-go-carrerpath/docs"
 	"github.com/avalith-net/skill-factory-go-carrerpath/middlewares"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

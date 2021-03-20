@@ -5,12 +5,12 @@ paths:
     post:
       consumes:
       - application/json
-      description: get user careerpath
+      description: get the email and password to access
       produces:
       - application/json
       responses:
         "200":
-          description: success show careerpath
+          description: Success Login
           headers:
             Token:
               description: jwtKey
@@ -18,18 +18,18 @@ paths:
           schema:
             type: string
         "400":
-          description: missing id parameter
+          description: invalid login
           schema:
             type: string
         "404":
-          description: error occurred looking the path
+          description: invalid login
           schema:
             type: string
         default:
-          description: 'Error show user path '
+          description: error
           schema:
             type: string
-      summary: shows a given user career path
+      summary: Enter the system
   /passwordRecovery:
     post:
       consumes:
