@@ -26,17 +26,17 @@ var doc = `{
     "paths": {
         "/login": {
             "post": {
-                "description": "get the email and password to access",
+                "description": "get user careerpath",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Enter the system",
+                "summary": "shows a given user career path",
                 "responses": {
                     "200": {
-                        "description": "Success Login",
+                        "description": "success show careerpath",
                         "schema": {
                             "type": "string"
                         },
@@ -48,19 +48,63 @@ var doc = `{
                         }
                     },
                     "400": {
-                        "description": "invalid login",
+                        "description": "missing id parameter",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "404": {
-                        "description": "invalid login",
+                        "description": "error occurred looking the path",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "default": {
-                        "description": "error",
+                        "description": "Error show user path ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/modifyPassword": {
+            "put": {
+                "description": "get the user and password update",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modify user password",
+                "responses": {
+                    "200": {
+                        "description": "Password updated",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "something went wrong with the given data or couldn't update password",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "something went wrong with the given data or couldn't update password",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Invalid Password Update",
                         "schema": {
                             "type": "string"
                         }

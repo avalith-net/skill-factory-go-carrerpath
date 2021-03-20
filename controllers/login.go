@@ -17,10 +17,12 @@ import (
 // @User get-struct-by-json
 // @Accept  json
 // @Produce json
+// @Param username formData string true "User credentials"
+// @Param password formData string true "Password"
 // @Success 200 {string} Token "Success Login"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {string} http.StatusBadRequest "invalid login"
-// @Failure default {string} http.StatusBadRequest "error"
+// @Failure 400,404 {object} gin.H "invalid login"
+// @Failure default {object} gin.H "error"
 // @Router /login [post]
 func Login(c *gin.Context) {
 	var user models.User

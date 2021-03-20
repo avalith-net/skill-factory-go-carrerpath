@@ -18,8 +18,8 @@ import (
 // @Produce html
 // @Success 200 {string} html
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {string} http.StatusBadRequest "invalid email, please write your email or the given email is not registered"
-// @Failure default {string} http.StatusBadRequest "error processing password recovery"
+// @Failure 400,404 {object} gin.H "invalid email, please write your email or the given email is not registered"
+// @Failure default {object} gin.H "error processing password recovery"
 // @Router /passwordRecovery [post]
 func PasswordRecovery(c *gin.Context) {
 	var user models.User

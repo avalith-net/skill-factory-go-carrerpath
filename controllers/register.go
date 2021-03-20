@@ -20,8 +20,8 @@ import (
 // @Produce json
 // @Success 200 {string} Token "user successfully registered"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {string} http.StatusBadRequest "something went wrong with the given data, error or the given email is already in use"
-// @Failure default {string} http.StatusBadRequest "error in register"
+// @Failure 400,404 {object} gin.H "something went wrong with the given data, error or the given email is already in use"
+// @Failure default {object} gin.H "error in register"
 // @Router /register [get]
 func Register(c *gin.Context) {
 	var user models.User
