@@ -26,7 +26,8 @@ func mapUrls() {
 	router.POST("/register", controllers.Register)
 	router.POST("/login", controllers.Login)
 	router.GET("/userpath", middlewares.ValidateJWT(), controllers.ShowUserPath)
-	router.POST("/passwordRecovery", controllers.PasswordRecovery)
+	router.PUT("/passwordRecovery", controllers.PasswordRecovery)
+	router.PUT("/modifyPassword", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.ModifyUserPassword)
 
 	//use ginSwagger middleware to serve the API docs
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
