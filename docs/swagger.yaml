@@ -42,7 +42,7 @@ paths:
       parameters:
       - description: Allows to complete the json for login
         in: body
-        name: body-json
+        name: Body
         required: true
         schema:
           type: string

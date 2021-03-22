@@ -84,7 +84,7 @@ var doc = `{
                 "parameters": [
                     {
                         "description": "Allows to complete the json for login",
-                        "name": "body-json",
+                        "name": "Body",
                         "in": "body",
                         "required": true,
                         "schema": {
