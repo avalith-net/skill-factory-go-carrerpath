@@ -80,30 +80,22 @@ var doc = `{
         "/modifyPassword": {
             "put": {
                 "description": "get the user and password update",
-                "produces": [
-                    "text/plain"
-                ],
                 "summary": "Modify user password",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "email",
-                        "name": "email",
-                        "in": "formData",
-                        "required": true
+                        "description": "Allows to complete the json for login",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "type": "string",
-                        "description": "JWT Token",
-                        "name": "token",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "New Pass",
-                        "name": "newpass",
-                        "in": "query",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
                         "required": true
                     }
                 ],

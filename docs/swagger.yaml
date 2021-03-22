@@ -40,23 +40,17 @@ paths:
     put:
       description: get the user and password update
       parameters:
-      - description: email
-        in: formData
-        name: email
+      - description: Allows to complete the json for login
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
+      - description: Token
+        in: header
+        name: Authorization
         required: true
         type: string
-      - description: JWT Token
-        in: query
-        name: token
-        required: true
-        type: string
-      - description: New Pass
-        in: query
-        name: newpass
-        required: true
-        type: string
-      produces:
-      - text/plain
       responses:
         "200":
           description: Password updated

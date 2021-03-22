@@ -14,10 +14,8 @@ import (
 // @Summary Modify user password
 // @Description get the user and password update
 // @User get-struct-by-json
-// @Param email formData string true "email"
-// @Param token query string true "jwt"
-// @Param passwordToUpdate query string true "password to be updated"
-// @Produce plain
+// @Param Body body string true "Allows to complete the json for login"
+// @Param Authorization header string true "Token"
 // @Success 200 {string} Token "Password updated"
 // @Failure 400,404 {string} string "something went wrong with the given data or couldn't update password"
 // @Failure default {string} string "Invalid Password Update"
