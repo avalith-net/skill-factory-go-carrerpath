@@ -1,6 +1,6 @@
-#CAREERPATH
+# CAREERPATH
 
-###¿Que es Careerpath?🚀
+### ¿Que es Careerpath?🚀
 _**Careepath** es una forma de ver las experiencias, habilidades y areas en la que se desempeñan los profesionales, nos permite conocer sus caracteristicas en una forma resumida y nos brinda un conocimiento amplio de su carrera como profesional._
 
 ###¿Quienes pueden utilizarla?
