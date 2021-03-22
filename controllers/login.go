@@ -15,14 +15,13 @@ import (
 // @Summary Enter the system
 // @Description get the email and password to access
 // @User get-struct-by-json
-// @Accept  json
-// @Produce json
-// @Param username formData string true "User credentials"
-// @Param password formData string true "Password"
+// @id login
+// @Param body-json body string true "Allows to complete the json for login"
+// @Accept json
 // @Success 200 {string} Token "Success Login"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {object} gin.H "invalid login"
-// @Failure default {object} gin.H "error"
+// @Failure 400,404 {string} string "invalid login"
+// @Failure default {string} string "error"
 // @Router /login [post]
 func Login(c *gin.Context) {
 	var user models.User

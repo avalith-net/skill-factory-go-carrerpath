@@ -14,13 +14,14 @@ import (
 // @Summary recovery the password if dont remember
 // @Description send email at the person what forgot the password
 // @User get-struct-by-json
-// @Accept  json
-// @Produce html
+// @Produce  json
 // @Success 200 {string} html
+// @Param name formData string true "name"
+// @Param email formData string true "email"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {object} gin.H "invalid email, please write your email or the given email is not registered"
-// @Failure default {object} gin.H "error processing password recovery"
-// @Router /passwordRecovery [post]
+// @Failure 400,404 {string} string "invalid email, please write your email or the given email is not registered"
+// @Failure default {string} string "error processing password recovery"
+// @Router /passwordRecovery [put]
 func PasswordRecovery(c *gin.Context) {
 	var user models.User
 

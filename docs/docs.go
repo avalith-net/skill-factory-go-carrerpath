@@ -26,17 +26,26 @@ var doc = `{
     "paths": {
         "/login": {
             "post": {
-                "description": "get user careerpath",
+                "description": "get the email and password to access",
                 "consumes": [
                     "application/json"
                 ],
-                "produces": [
-                    "application/json"
+                "summary": "Enter the system",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "description": "Allows to complete the json for login",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
-                "summary": "shows a given user career path",
                 "responses": {
                     "200": {
-                        "description": "success show careerpath",
+                        "description": "Success Login",
                         "schema": {
                             "type": "string"
                         },
@@ -48,19 +57,19 @@ var doc = `{
                         }
                     },
                     "400": {
-                        "description": "missing id parameter",
+                        "description": "invalid login",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "404": {
-                        "description": "error occurred looking the path",
+                        "description": "invalid login",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "default": {
-                        "description": "Error show user path ",
+                        "description": "error",
                         "schema": {
                             "type": "string"
                         }
@@ -71,24 +80,38 @@ var doc = `{
         "/modifyPassword": {
             "put": {
                 "description": "get the user and password update",
-                "consumes": [
-                    "application/json"
-                ],
                 "produces": [
-                    "application/json"
+                    "text/plain"
                 ],
                 "summary": "Modify user password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "JWT Token",
+                        "name": "token",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "New Pass",
+                        "name": "newpass",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Password updated",
                         "schema": {
                             "type": "string"
-                        },
-                        "headers": {
-                            "Token": {
-                                "type": "string",
-                                "description": "jwtKey"
-                            }
                         }
                     },
                     "400": {
@@ -113,15 +136,28 @@ var doc = `{
             }
         },
         "/passwordRecovery": {
-            "post": {
+            "put": {
                 "description": "send email at the person what forgot the password",
-                "consumes": [
+                "produces": [
                     "application/json"
                 ],
-                "produces": [
-                    "text/html"
-                ],
                 "summary": "recovery the password if dont remember",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -157,15 +193,49 @@ var doc = `{
             }
         },
         "/register": {
-            "get": {
+            "post": {
                 "description": "ask for email and password for register in the app",
-                "consumes": [
-                    "application/json"
-                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "creates the user register in the db",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User credentials",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Password",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "file",
+                        "description": "profilePhoto",
+                        "name": "profilePhoto",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "surname",
+                        "name": "surname",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "user successfully registered",
@@ -193,6 +263,50 @@ var doc = `{
                     },
                     "default": {
                         "description": "error in register",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/userpath": {
+            "get": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "shows a given user career path",
+                "responses": {
+                    "200": {
+                        "description": "success show careerpath",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing id parameter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "error occurred looking the path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error show user path ",
                         "schema": {
                             "type": "string"
                         }

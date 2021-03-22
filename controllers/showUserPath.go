@@ -16,10 +16,10 @@ import (
 // @Produce json
 // @Success 200 {string} http.StatusOK "success show careerpath"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400 {object} gin.H "missing id parameter"
-// @Failure 404 {object} gin.H "error occurred looking the path"
-// @Failure default {object} gin.H "Error show user path "
-// @Router /userpath [post]
+// @Failure 400 {string} string "missing id parameter"
+// @Failure 404 {string} string "error occurred looking the path"
+// @Failure default {string} string "Error show user path "
+// @Router /userpath [get]
 func ShowUserPath(c *gin.Context) {
 	ID := c.Query("id")
 	if len(ID) < 1 {

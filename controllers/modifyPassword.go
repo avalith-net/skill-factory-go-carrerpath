@@ -14,12 +14,13 @@ import (
 // @Summary Modify user password
 // @Description get the user and password update
 // @User get-struct-by-json
-// @Accept  json
-// @Produce json
+// @Param email formData string true "email"
+// @Param token query string true "jwt"
+// @Param passwordToUpdate query string true "password to be updated"
+// @Produce plain
 // @Success 200 {string} Token "Password updated"
-// @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {object} gin.H "something went wrong with the given data or couldn't update password"
-// @Failure default {object} gin.H "Invalid Password Update"
+// @Failure 400,404 {string} string "something went wrong with the given data or couldn't update password"
+// @Failure default {string} string "Invalid Password Update"
 // @Router /modifyPassword [put]
 func ModifyUserPassword(c *gin.Context) {
 	var user models.User

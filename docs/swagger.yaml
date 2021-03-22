@@ -5,12 +5,18 @@ paths:
     post:
       consumes:
       - application/json
-      description: get user careerpath
-      produces:
-      - application/json
+      description: get the email and password to access
+      operationId: login
+      parameters:
+      - description: Allows to complete the json for login
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
       responses:
         "200":
-          description: success show careerpath
+          description: Success Login
           headers:
             Token:
               description: jwtKey
@@ -18,32 +24,42 @@ paths:
           schema:
             type: string
         "400":
-          description: missing id parameter
+          description: invalid login
           schema:
             type: string
         "404":
-          description: error occurred looking the path
+          description: invalid login
           schema:
             type: string
         default:
-          description: 'Error show user path '
+          description: error
           schema:
             type: string
-      summary: shows a given user career path
+      summary: Enter the system
   /modifyPassword:
     put:
-      consumes:
-      - application/json
       description: get the user and password update
+      parameters:
+      - description: email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: JWT Token
+        in: query
+        name: token
+        required: true
+        type: string
+      - description: New Pass
+        in: query
+        name: newpass
+        required: true
+        type: string
       produces:
-      - application/json
+      - text/plain
       responses:
         "200":
           description: Password updated
-          headers:
-            Token:
-              description: jwtKey
-              type: string
           schema:
             type: string
         "400":
@@ -62,12 +78,21 @@ paths:
             type: string
       summary: Modify user password
   /passwordRecovery:
-    post:
-      consumes:
-      - application/json
+    put:
       description: send email at the person what forgot the password
+      parameters:
+      - description: name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: email
+        in: formData
+        name: email
+        required: true
+        type: string
       produces:
-      - text/html
+      - application/json
       responses:
         "200":
           description: OK
@@ -93,10 +118,34 @@ paths:
             type: string
       summary: recovery the password if dont remember
   /register:
-    get:
-      consumes:
-      - application/json
+    post:
       description: ask for email and password for register in the app
+      parameters:
+      - description: User credentials
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Password
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: profilePhoto
+        in: formData
+        name: profilePhoto
+        required: true
+        type: file
+      - description: surname
+        in: formData
+        name: surname
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -123,4 +172,33 @@ paths:
           schema:
             type: string
       summary: creates the user register in the db
+  /userpath:
+    get:
+      consumes:
+      - application/json
+      description: get user careerpath
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success show careerpath
+          headers:
+            Token:
+              description: jwtKey
+              type: string
+          schema:
+            type: string
+        "400":
+          description: missing id parameter
+          schema:
+            type: string
+        "404":
+          description: error occurred looking the path
+          schema:
+            type: string
+        default:
+          description: 'Error show user path '
+          schema:
+            type: string
+      summary: shows a given user career path
 swagger: "2.0"

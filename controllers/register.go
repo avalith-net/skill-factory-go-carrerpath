@@ -12,17 +12,25 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//Parameters that separated by spaces
+//. param name,param type,data type,is mandatory?,comment attribute(optional)
+
 //Register godoc
 // @Summary creates the user register in the db
 // @Description ask for email and password for register in the app
 // @User get-struct-by-json
-// @Accept  json
+// @Consume application/x-www-form-urlencoded
 // @Produce json
+// @Param name formData string true "User credentials"
+// @Param password formData string true "Password"
+// @Param email formData string true "email"
+// @Param profilePhoto formData file true "profilePhoto"
+// @Param surname formData string true "surname"
 // @Success 200 {string} Token "user successfully registered"
 // @Header 200 {string} Token "jwtKey"
-// @Failure 400,404 {object} gin.H "something went wrong with the given data, error or the given email is already in use"
-// @Failure default {object} gin.H "error in register"
-// @Router /register [get]
+// @Failure 400,404 {string} string "something went wrong with the given data, error or the given email is already in use"
+// @Failure default {string} string "error in register"
+// @Router /register [post]
 func Register(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBind(&user); err != nil {
