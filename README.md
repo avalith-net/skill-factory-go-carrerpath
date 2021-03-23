@@ -1,17 +1,15 @@
 # CAREERPATH
 
-### ¿Que es Careerpath?🚀
-_**Careerpath** es una forma de ver las experiencias, habilidades y areas en la que se desempeñan los profesionales, nos permite conocer sus caracteristicas en una forma resumida y nos brinda un conocimiento amplio de su carrera como profesional._
+### ¿What is Careerpath?🚀
+_**Careerpath** is an app that let you see professionals's skills in wich they develop. It allows us know the professional's characteristics in a summarized way and provides us with an extensive knowledge about the professional's career.
 
-### ¿Quienes pueden utilizarla?
-_La aplicacion en un pricipio esta destinada para empresas las cuales al incorporar personal, tenga un resumen del profesional en rasgos generales. Ademas, se puede utilizar por profesionales individuales con el fin de mostras un breve resumen de su trayectoria y habilidades._
+### ¿Who can use the app?
+_At the time being , the app is designed for companies that already have employees and want to register their career path at the company, besides, the app can be used also by freelance professionals so they can verify their own career path. 
 
-## ¿Como fue desarrollada?
-**Careerpath** fue desarrollada en el marco de una "SkillFactory-Go" en la cual se presento un proyecto para realizar el backend de la misma utilizando para su creacion el lenguaje de programacion Golang.
+## ¿How was developed?
+**Careerpath** is carryed out under the framework of a "SkillFactory-Go" in which a project was introduced to make the backend of it using Golang language for its development.
 
-
-
-## Autores ✒️
+## Authors ✒️
 
 * **Joao Paulo Correa Parise** - [JoaoPaulo87](https://github.com/JoaoPaulo87)
 * **Rocío Celeste Masmut** - [celemasmut](https://github.com/celemasmut)
