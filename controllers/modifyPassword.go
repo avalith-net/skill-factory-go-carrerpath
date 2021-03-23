@@ -15,7 +15,7 @@ import (
 // @Summary Modify user password
 // @Description get the user and password update
 // @User get-struct-by-json
-// @Param Body body string true "Allows to complete the json for login"
+// @Param New-password body string true "Allows to replace the password for login"
 // @Param Authorization header string true "Token"
 // @Success 200 {string} Token "Password updated"
 // @Failure 400,404 {string} string "something went wrong with the given data or couldn't update password"

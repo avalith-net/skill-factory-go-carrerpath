@@ -83,8 +83,8 @@ var doc = `{
                 "summary": "Modify user password",
                 "parameters": [
                     {
-                        "description": "Allows to complete the json for login",
-                        "name": "Body",
+                        "description": "Allows to replace the password for login",
+                        "name": "New-password",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -268,10 +268,23 @@ var doc = `{
                 "consumes": [
                     "application/json"
                 ],
-                "produces": [
-                    "application/json"
-                ],
                 "summary": "shows a given user career path",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "success show careerpath",
