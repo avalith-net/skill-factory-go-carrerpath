@@ -13,8 +13,9 @@ import (
 // @Description get user careerpath
 // @User get-struct-by-json
 // @Accept  json
-// @Produce json
-// @Success 200 {string} http.StatusOK "success show careerpath"
+// @Param id query string true "ID"
+// @Param Authorization header string true "Token"
+// @Success 200 {string} string "success show careerpath"
 // @Header 200 {string} Token "jwtKey"
 // @Failure 400 {string} string "missing id parameter"
 // @Failure 404 {string} string "error occurred looking the path"
