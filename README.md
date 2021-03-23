@@ -7,7 +7,7 @@ _**Careerpath** es una forma de ver las experiencias, habilidades y areas en la 
 _La aplicacion en un pricipio esta destinada para empresas las cuales al incorporar personal, tenga un resumen del profesional en rasgos generales. Ademas, se puede utilizar por profesionales individuales con el fin de mostras un breve resumen de su trayectoria y habilidades._
 
 ## ¿Como fue desarrollada?
-_**Careerpath** fue desarrollada en el marco de una "SkillFactory-Go" en la cual se presento un proyecto para realizar el backend de la misma utilizando para su creacion el lenguaje de programacion Golang.
+**Careerpath** fue desarrollada en el marco de una "SkillFactory-Go" en la cual se presento un proyecto para realizar el backend de la misma utilizando para su creacion el lenguaje de programacion Golang.
 
 
 
