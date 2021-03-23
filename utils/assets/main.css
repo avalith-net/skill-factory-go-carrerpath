@@ -1,0 +1,56 @@
+body {
+    background-color: lightskyblue;
+}
+
+body h1{
+    font-family: 'Microsoft Himalaya';
+    border: solid 1px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.messagewlc{
+   border: solid 1px black;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 2px;
+    color: black;
+}
+
+.messagebody{
+    padding-left: 50px;
+    padding-right: 50px;
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 30px;
+    color: black;
+    position: relative;
+}
+
+.messagebody p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-family: "Microsoft Himalaya";
+}
+
+.password{
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    border: solid 1px;
+
+}
+
+
+.password:hover{
+    background-color: lightskyblue;
+    box-shadow: 5px 5px 8px rgb(0, 0, 0);
+    transition: .3s;
+}

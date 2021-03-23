@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Careerpath </title>
 </head>
 <body>
-    <h1>Password Recovery</h1>
-    <h2>Thanks for subscribe to Careerpath {{.Name}}.</h2>
-    <img src="http://www.unixstickers.com/image/cache/data/stickers/golang/Go-brown-side.sh-600x600.png" title="gopher" alt="Logo golang">
-    <p>this is a momentary password {{.NewPassword}}, please change it after login. Thanks!</p>
+    <h1>CAREERPATH PASSWORD RECOVERY</h1>
+    <div class="messagewlc">
+        <h2>Thanks for subscribe to Careerpath {{.Name}}.</h2>
+    </div>
+    <div class="messagebody">
+        <p>This is a momentary password, please change it after login.</p>
+        <p class="password">{{.NewPassword}}</p>
+    </div>
+
 </body>
 </html>
