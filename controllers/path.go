@@ -17,8 +17,8 @@ func Path(c *gin.Context) {
 		return
 	}
 	if _, err := database.CreatePath(path); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"could not modify Path": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"could not create Path": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, fmt.Sprintf("Path has been modified"))
+	c.JSON(http.StatusOK, fmt.Sprintf("Path has been created"))
 }
