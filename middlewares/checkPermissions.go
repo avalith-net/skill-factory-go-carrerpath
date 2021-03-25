@@ -24,7 +24,7 @@ The parameter CheckPermissions(string) is not case sensitive
 */
 
 //CheckPermissions middleware
-func CheckPermissions(wantedPermission string) gin.HandlerFunc {
+func CheckPermissions() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 		_, _, id, err := jwt.ProcessToken(c.GetHeader("Authorization"))
@@ -39,7 +39,7 @@ func CheckPermissions(wantedPermission string) gin.HandlerFunc {
 			c.AbortWithStatus(403)
 			return
 		}
-		_, erro := utils.IsAllowed(user.Role, wantedPermission)
+		_, erro := utils.IsAllowed(user.Role)
 		if erro != nil {
 			c.JSON(http.StatusForbidden, gin.H{"Forbidden ": erro.Error()})
 			c.AbortWithStatus(403)
