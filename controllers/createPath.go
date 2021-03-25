@@ -9,7 +9,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Path(c *gin.Context) {
+//CreatePath godoc
+// @Summary Create new career path
+// @Description allows you to create a new path if you are an admin
+// @User get-struct-by-json
+// @Param body-json body string true "Complete the json to create new path"
+// @Param Authorization header string true "Token"
+// @Accept json
+// @Success 200 {string} string "Path has been created"
+// @Failure 400 {string} string "could not create Path"
+// @Failure default {string} string "error"
+// @Router /createPath [post]
+func CreatePath(c *gin.Context) {
 	var path models.Path
 
 	if err := c.ShouldBind(&path); err != nil {

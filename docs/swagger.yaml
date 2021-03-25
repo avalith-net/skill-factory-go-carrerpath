@@ -1,6 +1,37 @@
 info:
   contact: {}
 paths:
+  /createPath:
+    post:
+      consumes:
+      - application/json
+      description: allows you to create a new path if you are an admin
+      parameters:
+      - description: Complete the json to create new path
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Path has been created
+          schema:
+            type: string
+        "400":
+          description: could not create Path
+          schema:
+            type: string
+        default:
+          description: error
+          schema:
+            type: string
+      summary: Create new career path
   /login:
     post:
       consumes:
