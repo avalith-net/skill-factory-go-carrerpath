@@ -30,6 +30,9 @@ func mapUrls() {
 	router.PUT("/passwordRecovery", controllers.PasswordRecovery)
 	router.PUT("/modifyPassword", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.ModifyUserPassword)
 	router.POST("/createPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.CreatePath)
+	router.POST("/createRelatedUserPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.CreateRelatedUser)
+	router.POST("/addSkill", middlewares.CheckDB(), middlewares.ValidateJWT(),controllers.AddSkillUserPath)
+
 	//use ginSwagger middleware to serve the API docs
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
