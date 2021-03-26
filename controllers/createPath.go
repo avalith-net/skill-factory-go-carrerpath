@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
@@ -31,5 +30,5 @@ func CreatePath(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"could not create Path": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, fmt.Sprintf("Path has been created"))
+	c.JSON(http.StatusOK, ("Path has been created"))
 }

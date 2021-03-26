@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
@@ -24,7 +23,7 @@ import (
 func ShowUserPath(c *gin.Context) {
 	ID := c.Query("id")
 	if len(ID) < 1 {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("missing id parameter"))
+		c.JSON(http.StatusBadRequest, ("missing id parameter"))
 		return
 	}
 	path, err := database.UserPath.SummaryUserPath(ID)

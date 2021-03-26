@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -44,7 +43,7 @@ func Register(c *gin.Context) {
 	//check if the user already exists
 	_, finded, _ := database.CheckUser.CheckUserAlreadyExists(user.Email)
 	if finded {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is already in use"))
+		c.JSON(http.StatusBadRequest, ("the given email is already in use"))
 		return
 	}
 	//Validate password. It needs at least, 1 upper case letter and 1 lower case
@@ -63,7 +62,7 @@ func Register(c *gin.Context) {
 		return
 	}
 	if !status {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("failed to insert user register"))
+		c.JSON(http.StatusBadRequest, ("failed to insert user register"))
 		return
 	}
 	//here everything went well
