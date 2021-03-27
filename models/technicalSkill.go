@@ -5,4 +5,5 @@ type TechnicalSkill struct {
 	Name    string      `bson:"name" json:"name,omitempty"`
 	Blocked bool        `bson:"blocked" json:"blocked,omitempty"`
 	Tools   []SkillTool `bson:"tools" json:"tools,omitempty"`
+	Certified bool `bson:"certified" json:"certified,omiempty"`
 }
