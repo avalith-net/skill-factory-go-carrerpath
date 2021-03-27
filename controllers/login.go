@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -31,12 +30,12 @@ func Login(c *gin.Context) {
 		return
 	}
 	if len(user.Email) == 0 {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("email is required"))
+		c.JSON(http.StatusBadRequest, ("email is required"))
 		return
 	}
 	userDB, exist := database.Login.LoginTry(user.Email, user.Password)
 	if !exist {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("invalid user or password"))
+		c.JSON(http.StatusBadRequest, ("invalid user or password"))
 		return
 	}
 

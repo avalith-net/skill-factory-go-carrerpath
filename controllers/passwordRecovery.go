@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
@@ -31,14 +30,14 @@ func PasswordRecovery(c *gin.Context) {
 	}
 
 	if len(user.Email) < 1 {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("please write your email"))
+		c.JSON(http.StatusBadRequest, ("please write your email"))
 		return
 	}
 
 	//Antes de enviar el mail, chequea si es un mail ya registrado, sino devuelve el error
 	_, finded, ID := database.CheckUser.CheckUserAlreadyExists(user.Email)
 	if !finded {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("the given email is not registered"))
+		c.JSON(http.StatusBadRequest, ("the given email is not registered"))
 		return
 	}
 

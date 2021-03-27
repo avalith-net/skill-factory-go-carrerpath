@@ -21,7 +21,7 @@ require (
 	github.com/ugorji/go v1.2.4 // indirect
 	go.mongodb.org/mongo-driver v1.4.6
 	golang.org/x/crypto v0.0.0-20210317152858-513c2a44f670
-	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4 // indirect
+	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4
 	golang.org/x/sys v0.0.0-20210320140829-1e4c9ba3b0c4 // indirect
 	golang.org/x/tools v0.1.0 // indirect
 )

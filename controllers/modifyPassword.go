@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
@@ -36,5 +35,5 @@ func ModifyUserPassword(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, fmt.Sprintf("Password updated"))
+	c.JSON(http.StatusOK, ("Password updated"))
 }

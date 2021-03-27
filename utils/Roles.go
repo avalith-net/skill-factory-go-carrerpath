@@ -1,10 +1,17 @@
 package utils
 
-import(
+import (
 	"errors"
-	"strings"
 )
 
+func IsAllowed(role string) (bool, error) {
+	if role == "AdminMaster" {
+		return true, nil
+	}
+	return false, errors.New("Action not allowed")
+}
+
+/*
 type Role struct {
 	Name   string
 	Permissions []string
@@ -57,12 +64,13 @@ func IsAllowed(role string, permission string) (bool, error){
 	if strings.EqualFold(role, "admin"){
 		return true, nil
 	}else{
-		per:= GetPermissions(role)	
+		per:= GetPermissions(role)
 		for i:=0; i< len(per); i++{
 			if  strings.EqualFold(permission, per[i]){
 				return true, nil
 			}
-		}		
+		}
 	}
 	return false, errors.New("Action not allowed")
 }
+*/
