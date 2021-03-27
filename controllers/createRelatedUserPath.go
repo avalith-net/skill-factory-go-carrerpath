@@ -34,5 +34,5 @@ func CreateRelatedUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, ("Succesfully, Relation created"))
+	c.JSON(http.StatusCreated, ("User successfuly related to the selected path."))
 }

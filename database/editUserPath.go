@@ -19,24 +19,14 @@ func EditUserPath(pathUser models.Path, databaseUserPath models.Path, pathID str
 
 	pathTemplate := make(map[string]interface{})
 
-
-
-	if len(pathUser.Description) > 0{
+	if len(pathUser.Description) > 0 {
 		pathTemplate["description"] = pathUser.Description
 	}
 	if len(pathUser.TechnicalSkills) > 0 {
-		for tools, _ := range pathUser.TechnicalSkills {
-			if tools > 0 {
-				pathTemplate["technicalSkills"] = append(databaseUserPath.TechnicalSkills, pathUser.TechnicalSkills...)
-			}
-		}
+		pathTemplate["technicalSkills"] = pathUser.TechnicalSkills
 	}
 	if len(pathUser.SoftSkills) > 0 {
-		for tools, _ := range pathUser.TechnicalSkills {
-			if tools > 0 {
-				pathTemplate["softSkills"] = append(databaseUserPath.SoftSkills, pathUser.SoftSkills...)
-			}
-		}
+		pathTemplate["softSkills"] = pathUser.SoftSkills
 	}
 
 	updateToString := bson.M{

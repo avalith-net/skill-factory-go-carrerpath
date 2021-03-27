@@ -53,7 +53,7 @@ func Register(c *gin.Context) {
 	}
 	//Save profile picture
 	var extension = strings.Split(user.ProfilePhoto.Filename, ".")[1]
-	if err := c.SaveUploadedFile(user.ProfilePhoto, "uploads/profile/"+user.Name+"."+extension); err != nil {
+	if err := c.SaveUploadedFile(user.ProfilePhoto, "uploads/profile/"+strings.TrimSpace(user.Name)+"."+extension); err != nil {
 		log.Fatal(err)
 	}
 	_, status, err := database.RegisterService.InsertRegister(user)
