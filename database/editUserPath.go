@@ -10,31 +10,33 @@ import (
 )
 
 func EditUserPath(pathUser models.Path, ID string) (bool, error) {
+
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
+
 	db := MongoCN.Database("careerpath")
 	col := db.Collection("path")
 
-	register := make(map[string]interface{})
+	pathTemplate := make(map[string]interface{})
 
-	//tomodPath.TechnicalSkills = append(tomodPath.TechnicalSkills, pathUser.TechnicalSkills...)
-
+	if len(pathUser.Description) > 0{
+		pathTemplate["description"] = pathUser.Description
+	}
 	if len(pathUser.TechnicalSkills) > 0 {
-		register["technicalSkills"] = pathUser.TechnicalSkills
+		pathTemplate["technicalSkills"] = pathUser.TechnicalSkills
 	}
-	//tomodPath.SoftSkills = append(tomodPath.SoftSkills, pathUser.SoftSkills...)
 	if len(pathUser.SoftSkills) > 0 {
-		register["softSkills"] = pathUser.SoftSkills
+		pathTemplate["softSkills"] = pathUser.SoftSkills //body en json
 	}
 
-	updtString := bson.M{
-		"$set": register,
+	updateToString := bson.M{
+		"$set": pathTemplate,
 	}
 
-	objID, _ := primitive.ObjectIDFromHex(ID)
-	filter := bson.M{"_id": bson.M{"$eq": objID}}
+	objectID, _ := primitive.ObjectIDFromHex(ID)
+	filter := bson.M{"_id": bson.M{"$eq": objectID}}
 
-	_, err := col.UpdateMany(ctx, filter, updtString)
+	_, err := col.UpdateOne(ctx, filter, updateToString)
 	if err != nil {
 		return false, err
 	}

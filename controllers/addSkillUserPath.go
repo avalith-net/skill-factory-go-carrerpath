@@ -17,9 +17,9 @@ func AddSkillUserPath(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"Something went wrong with the given data: ": err.Error()})
 		return
 	}
-	path.UserId = jwt.UserID
 
-	_, err := database.ConsultUserPath(path)
+	path.UserId = jwt.UserID
+	_, err := database.ConsultUserPath(path.UserId, path.UserPathId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"User path not related with user: ": err.Error()})
 		return
