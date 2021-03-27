@@ -31,5 +31,5 @@ func AddSkillUserPath(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, ("Skills added, the admin will check them, please wait..."))
+	c.JSON(http.StatusCreated, "Skills added, the admin will check them, please wait...")
 }
