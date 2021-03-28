@@ -8,23 +8,23 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func ConsultUserPath(userId string, pathId string) (bool, string, error) {
+func ConsultUserPath(userId string, pathId string) (*models.RelatadPath, bool, string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	db := MongoCN.Database("careerpath")
-	col := db.Collection("relation")
+	col := db.Collection("userPath")
 
 	condition := bson.M{
 		"userid":     userId,
 		"userpathid": pathId,
 	}
 
-	var result models.RelatadPath
-	err := col.FindOne(ctx, condition).Decode(&result)
-	idRelation := result.RelationID.Hex()
+	var userPath models.RelatadPath
+	err := col.FindOne(ctx, condition).Decode(&userPath)
+	idRelation := userPath.RelationID.Hex()
 	if err != nil {
-		return false, "", err
+		return nil, false, "", err
 	}
-	return true, idRelation, nil
+	return &userPath, true, idRelation, nil
 }

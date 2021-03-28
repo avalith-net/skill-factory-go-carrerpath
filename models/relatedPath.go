@@ -7,6 +7,4 @@ type RelatadPath struct {
 	UserId     string             `bson:"userid" json:"userid,omitempty"`
 	UserPathId string             `bson:"userpathid" json:"userpathid,omitempty"`
 	Path       Path               `bson:"path" json:"path,omitempty"`
-	// TechnicalSkills []TechnicalSkill `bson:"technicalSkills" json:"technicalSkills,omitempty"`
-	// SoftSkills      []Skill          `bson:"softSkills" json:"softSkills,omitempty"`
 }

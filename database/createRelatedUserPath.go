@@ -1,9 +1,10 @@
 package database
 
 import (
+	"time"
+
 	"github.com/avalith-net/skill-factory-go-carrerpath/models"
 	"golang.org/x/net/context"
-	"time"
 )
 
 func CreateRelatedUserPath(rel models.RelatadPath) (bool, error) {
@@ -11,7 +12,7 @@ func CreateRelatedUserPath(rel models.RelatadPath) (bool, error) {
 	defer cancel()
 
 	db := MongoCN.Database("careerpath")
-	col := db.Collection("relation")
+	col := db.Collection("userPath")
 
 	_, err := col.InsertOne(ctx, rel)
 

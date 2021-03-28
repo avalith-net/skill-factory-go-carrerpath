@@ -27,19 +27,19 @@ func AddSkillUserPath(c *gin.Context) {
 			return
 		}
 	}
-	_, relationID, err := database.ConsultUserPath(jwt.UserID, pathID)
+	originalPath, _, relationID, err := database.ConsultUserPath(jwt.UserID, pathID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"User path not related with user: ": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"Path not related with user: ": err.Error()})
 		return
 	}
 
-	originalPath, err := database.UserPath.SummaryUserPath(pathID)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"Couldn´t add the skills to the path: ": err.Error()})
-		return
-	}
+	// originalPath, err := database.Path.GetPathByID(pathID)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"Couldn´t add the skills to the path: ": err.Error()})
+	// 	return
+	// }
 
-	_, err = database.EditUserPath(path, originalPath, relationID)
+	_, err = database.AddSkillUserPath(path, originalPath, relationID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"Couldn´t add the skills to the path: ": err.Error()})
 		return

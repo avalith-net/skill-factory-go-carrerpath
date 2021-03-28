@@ -10,21 +10,27 @@ import (
 
 func CreateRelatedUser(c *gin.Context) {
 	PathID := c.Query("pathid")
-	UserId := c.Query("userid")
+	UserID := c.Query("userid")
 	if len(PathID) < 1 {
 		c.JSON(http.StatusBadRequest, ("missing Path id"))
 		return
 	}
-	if len(UserId) < 1 {
+	if len(UserID) < 1 {
 		c.JSON(http.StatusBadRequest, ("missing User id"))
 		return
 	}
 
+	//consultar si ya existe una relacion entre el user y el path
+	if _, status, _, _ := database.ConsultUserPath(UserID, PathID); status {
+		c.JSON(http.StatusBadRequest, "User is already related with the given path")
+		return
+	}
+
 	var rel models.RelatadPath
-	rel.UserId = UserId
+	rel.UserId = UserID
 	rel.UserPathId = PathID
 
-	path, err := database.UserPath.SummaryUserPath(PathID)
+	path, err := database.Path.GetPathByID(PathID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"No path in result": err.Error()})
 		return

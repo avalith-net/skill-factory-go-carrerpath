@@ -32,7 +32,7 @@ func mapUrls() {
 	router.POST("/createPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.CreatePath)
 	router.POST("/createRelatedUserPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.CreateRelatedUser)
 	router.PUT("/validateOrModifyUserPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.ValidateAndModifyUserPath)
-	router.PUT("/addSkill", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.AddSkillUserPath)
+	router.PATCH("/addSkill", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.AddSkillUserPath)
 
 	//use ginSwagger middleware to serve the API docs
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
