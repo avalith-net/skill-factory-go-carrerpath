@@ -24,7 +24,7 @@ func ValidateAndModifyUserPath(c *gin.Context) {
 		return
 	}
 
-	if _, err := database.ValidateUserPath(userPath, relationID); err != nil {
+	if _, err := database.ModifyUserPath(userPath, relationID); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"could not modify user's path ": err.Error()})
 		return
 	}

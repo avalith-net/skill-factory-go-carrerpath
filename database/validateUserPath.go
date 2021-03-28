@@ -12,7 +12,7 @@ import (
 	_ "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func ValidateUserPath(userPath models.RelatadPath, relationID string) (bool, error) {
+func ModifyUserPath(userPath models.RelatadPath, relationID string) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
