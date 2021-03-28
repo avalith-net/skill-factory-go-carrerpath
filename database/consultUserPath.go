@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func ConsultUserPath(userId string, pathId string) (bool, error) {
+func ConsultUserPath(userId string, pathId string) (bool, string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
@@ -22,8 +22,9 @@ func ConsultUserPath(userId string, pathId string) (bool, error) {
 
 	var result models.RelatadPath
 	err := col.FindOne(ctx, condition).Decode(&result)
+	idRelation := result.RelationID.Hex()
 	if err != nil {
-		return false, err
+		return false, "", err
 	}
-	return true, nil
+	return true, idRelation, nil
 }

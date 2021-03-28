@@ -24,6 +24,14 @@ func CreateRelatedUser(c *gin.Context) {
 	rel.UserId = UserId
 	rel.UserPathId = PathID
 
+	path, err := database.UserPath.SummaryUserPath(PathID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"No path in result": err.Error()})
+		return
+	}
+
+	rel.Path = path
+
 	status, err := database.CreateRelatedUserPath(rel)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"Error in the created realtionship": err.Error()})

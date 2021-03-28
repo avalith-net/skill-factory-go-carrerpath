@@ -10,18 +10,18 @@ import (
 
 func ValidateAndModifyUserPath(c *gin.Context) {
 	//	var userPath models.Path
-	var path models.Path
+	var path models.RelatadPath
 	PathID := c.Query("pathid")
 	UserId := c.Query("userid")
 
 	//looking the userpath
-	pathUserDb, err := database.UserPath.SummaryUserPath(PathID)
+	originalPath, err := database.UserPath.SummaryUserPath(PathID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"User path not related with user: ": err.Error()})
 		return
 	}
 
-	_, err = database.ConsultUserPath(UserId,PathID)
+	_, relationID, err := database.ConsultUserPath(UserId, PathID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"User path not related with user: ": err.Error()})
 		return
@@ -32,11 +32,10 @@ func ValidateAndModifyUserPath(c *gin.Context) {
 		return
 	}
 
-	if _, err := database.EditUserPath(path, pathUserDb, PathID); err != nil {
+	if _, err := database.EditUserPath(path, originalPath, relationID); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"could not modify user's path ": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, ("Path has been modified"))
 }
-
