@@ -33,12 +33,6 @@ func AddSkillUserPath(c *gin.Context) {
 		return
 	}
 
-	// originalPath, err := database.Path.GetPathByID(pathID)
-	// if err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"Couldn´t add the skills to the path: ": err.Error()})
-	// 	return
-	// }
-
 	_, err = database.AddSkillUserPath(path, originalPath, relationID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"Couldn´t add the skills to the path: ": err.Error()})

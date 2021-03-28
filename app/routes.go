@@ -26,7 +26,7 @@ func mapUrls() {
 	router.Use(middlewares.CheckDB())
 	router.POST("/register", controllers.Register)
 	router.POST("/login", controllers.Login)
-	router.GET("/userpath", middlewares.ValidateJWT(), controllers.ShowUserPath)
+	router.GET("/userpath", middlewares.ValidateJWT(), controllers.GetPathByID)
 	router.PUT("/passwordRecovery", controllers.PasswordRecovery)
 	router.PUT("/modifyPassword", middlewares.CheckDB(), middlewares.ValidateJWT(), controllers.ModifyUserPassword)
 	router.POST("/createPath", middlewares.CheckDB(), middlewares.CheckPermissions(), controllers.CreatePath)

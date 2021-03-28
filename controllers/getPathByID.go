@@ -7,20 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//ShowUserPath
-// @Summary shows a given user career path
+//GetPathByID
+// @Summary shows a complete original career path
 // @Description get user careerpath
 // @User get-struct-by-json
 // @Accept  json
 // @Param id query string true "ID"
 // @Param Authorization header string true "Token"
-// @Success 200 {string} string "success show careerpath"
+// @Success 200 {string} string "status ok"
 // @Header 200 {string} Token "jwtKey"
 // @Failure 400 {string} string "missing id parameter"
-// @Failure 404 {string} string "error occurred looking the path"
-// @Failure default {string} string "Error show user path "
+// @Failure 404 {string} string "error occurred looking for the path"
+// @Failure default {string} string "Error"
 // @Router /userpath [get]
-func ShowUserPath(c *gin.Context) {
+func GetPathByID(c *gin.Context) {
 	ID := c.Query("id")
 	if len(ID) < 1 {
 		c.JSON(http.StatusBadRequest, ("missing id parameter"))
@@ -28,7 +28,7 @@ func ShowUserPath(c *gin.Context) {
 	}
 	path, err := database.Path.GetPathByID(ID)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error occurred looking the path": err.Error()})
+		c.JSON(http.StatusNotFound, gin.H{"error occurred looking for the path": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, path)

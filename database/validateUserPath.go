@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"reflect"
 	"time"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/models"
@@ -11,7 +12,7 @@ import (
 	_ "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func ValidateUserPath(path models.Path, pathID string) (bool, error) {
+func ValidateUserPath(userPath models.RelatadPath, relationID string) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
@@ -20,18 +21,16 @@ func ValidateUserPath(path models.Path, pathID string) (bool, error) {
 
 	pathTemplate := make(map[string]interface{})
 
-	if len(path.TechnicalSkills) > 0 {
-		pathTemplate["technicalSkills"] = path.TechnicalSkills
-	}
-	if len(path.SoftSkills) > 0 {
-		pathTemplate["softSkills"] = path.SoftSkills
-	}
+	emptyPath := models.RelatadPath{}
 
+	if !reflect.DeepEqual(userPath, emptyPath) {
+		pathTemplate["path"] = userPath.Path
+	}
 	updateToString := bson.M{
 		"$set": pathTemplate,
 	}
 
-	objectID, _ := primitive.ObjectIDFromHex(pathID)
+	objectID, _ := primitive.ObjectIDFromHex(relationID)
 	filter := bson.M{"_id": bson.M{"$eq": objectID}}
 
 	_, err := col.UpdateOne(ctx, filter, updateToString)
