@@ -11,6 +11,7 @@ import (
 
 func AddCertificate(c *gin.Context) {
 	var userPath models.RelatadPath
+	var notification models.Notification
 	pathID := c.Query("pathid")
 
 	if err := c.ShouldBind(&userPath); err != nil {
@@ -24,6 +25,13 @@ func AddCertificate(c *gin.Context) {
 	}
 	if _, err := database.ModifyUserPath(userPath, relationID); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"could not modify user's path ": err.Error()})
+		return
+	}
+
+	notification.UserId = jwt.UserID
+	notification.Message = "I want to validate this skill, please check my certification. Thanks!"
+	if  err := database.SendNotification(notification); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"could not notify the admin ": err.Error()})
 		return
 	}
 
