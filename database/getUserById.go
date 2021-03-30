@@ -24,3 +24,4 @@ func GetUserById(id string) (models.User, error) {
 	}
 	return user, nil
 }
+
