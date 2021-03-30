@@ -4,32 +4,22 @@ import (
 	"bytes"
 	"crypto/tls"
 	"fmt"
-	"html/template"
+	"github.com/alecthomas/template"
 	"net/mail"
 	"net/smtp"
 )
 
-type dest struct {
+type Dest struct {
 	Name        string
-	NewPassword string
+	Feedback string
 }
 
-func CheckError(err error, message string) {
-	if err != nil {
-		AppendError(message)
-	}
-}
-
-func PasswordRecovery(userName string, email string) (string, string, error) {
+func SendFeedbackCertificated(userName string, email string, Feedback string) error {
 	from := mail.Address{Name: "CareerPath", Address: "careerpath.avalith@gmail.com"}
 	to := mail.Address{Name: userName, Address: email}
-	subject := "Password Recovery"
+	subject := "Feedback of certification Skill"
 
-	newPassword := passwordGenerated(3, 2, 4, 3)
-
-	dest := dest{Name: to.Address, NewPassword: newPassword}
-
-	// dest := dest{Name: to.Address}
+	Dest := Dest{Name: to.Address, Feedback: Feedback }
 
 	headers := make(map[string]string)
 	headers["From"] = from.String()
@@ -43,11 +33,11 @@ func PasswordRecovery(userName string, email string) (string, string, error) {
 		message += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
 
-	t, err := template.ParseFiles("utils/assets/templateMail.html")
+	t, err := template.ParseFiles("utils/assets/feedbackTemplate.html")
 	CheckError(err, "error in the template html")
 
 	buf := new(bytes.Buffer)
-	err = t.Execute(buf, dest)
+	err = t.Execute(buf, Dest)
 	CheckError(err, "error in the execute")
 
 	message += buf.String()
@@ -87,6 +77,6 @@ func PasswordRecovery(userName string, email string) (string, string, error) {
 
 	client.Quit()
 
-	return "Email successfully sent,  please check your inbox for a link to complete the reset.", newPassword, nil
+	return  nil
 
 }
