@@ -35,6 +35,7 @@ func mapUrls() {
 	router.PATCH("/addCertificate", middlewares.ValidateJWT(), controllers.AddCertificate)
 	router.PUT("/validateOrModifyUserPath", middlewares.CheckPermissions(), controllers.ValidateAndModifyUserPath)
 	router.PATCH("/addSkill", middlewares.ValidateJWT(), controllers.AddSkillUserPath)
+	router.GET("/notifications", middlewares.CheckPermissions(), controllers.GetNotification)
 
 	//use ginSwagger middleware to serve the API docs
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")

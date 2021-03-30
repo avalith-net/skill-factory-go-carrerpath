@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/avalith-net/skill-factory-go-carrerpath/utils"
 	"net/http"
 
 	"github.com/avalith-net/skill-factory-go-carrerpath/database"
@@ -12,6 +13,14 @@ func ValidateAndModifyUserPath(c *gin.Context) {
 	var userPath models.RelatadPath
 	PathID := c.Query("pathid")
 	UserId := c.Query("userid")
+	message := c.Query("message")
+
+
+	user, err := database.GetUserById(UserId)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Couldnt get user by ID ": err.Error()})
+		return
+	}
 
 	if err := c.ShouldBind(&userPath); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"something went wrong with the given data: ": err.Error()})
@@ -29,5 +38,10 @@ func ValidateAndModifyUserPath(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, ("Path has been modified"))
+	if err := utils.SendFeedbackCertificated(user.Name, user.Email, message); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"could send feedback to user. ": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, "Path has been modified")
 }
