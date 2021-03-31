@@ -14,6 +14,7 @@ import (
 // @User get-struct-by-json
 // @Produce json
 // @Success 200 {string} string "User successfuly related to the selected path"
+// @Param body-json body string true "Allows to complete the json for login"
 // @Param pathid query string true "PathID"
 // @Param userid query string true "UserID"
 // @Param Authorization header string true "Token"

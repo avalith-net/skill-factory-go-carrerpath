@@ -8,6 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//GetNotification godoc
+// @Summary Get notifications
+// @Description Get all the notifications from the users
+// @User get-struct-by-json
+// @Accept  json
+// @Param page query string true "Insert the page"
+// @Param Authorization header string true "Token"
+// @Success 200 {string} string "status ok"
+// @Failure 400 {string} string "Page must be a number"
+// @Failure 400 {string} string "Coudn´t get the notifications"
+// @Failure default {string} string "Error"
+// @Router /notifications [get]
 func GetNotification(c *gin.Context) {
 	page := c.Query("page")
 	pageTemp, err := strconv.Atoi(page)

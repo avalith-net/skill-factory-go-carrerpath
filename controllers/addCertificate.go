@@ -9,6 +9,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//CreatePath godoc
+// @Summary Add a new certificate
+// @Description allows you add a certificate to your skill
+// @User get-struct-by-json
+// @Param body-json body string true "Complete the json to create new path"
+// @Param pathid query string true "pathID"
+// @Param Authorization header string true "Token"
+// @Accept json
+// @Success 200 {string} string "Certificate added. Congratulations!"
+// @Failure 400 {string} string "Something went wrong with the given data: "
+// @Failure 400 {string} string "User path not related with user: "
+// @Failure 400 {string} string "could not modify user's path"
+// @Failure 400 {string} string "Couldnt get user by ID"
+// @Failure 400 {string} string "could not notify the admin"
+// @Failure default {string} string "error"
+// @Router /addCertificate [patch]
 func AddCertificate(c *gin.Context) {
 	var userPath models.RelatadPath
 	var notification models.Notification

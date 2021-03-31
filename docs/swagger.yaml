@@ -1,6 +1,78 @@
 info:
   contact: {}
 paths:
+  /addCertificate:
+    patch:
+      consumes:
+      - application/json
+      description: allows you add a certificate to your skill
+      parameters:
+      - description: Complete the json to create new path
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
+      - description: pathID
+        in: query
+        name: pathid
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Certificate added. Congratulations!
+          schema:
+            type: string
+        "400":
+          description: could not notify the admin
+          schema:
+            type: string
+        default:
+          description: error
+          schema:
+            type: string
+      summary: Add a new certificate
+  /addSkill:
+    patch:
+      consumes:
+      - application/json
+      description: get user careerpath
+      parameters:
+      - description: Allows to complete the json for login
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
+      - description: Insert path id
+        in: query
+        name: pathid
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Skills added, the admin will check them, please wait...
+          schema:
+            type: string
+        "400":
+          description: 'Couldn´t add the skills to the path: '
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            type: string
+      summary: add new skill to the user path
   /createPath:
     post:
       consumes:
@@ -36,6 +108,12 @@ paths:
     post:
       description: allows you to create a new user's path relation if you are an admin
       parameters:
+      - description: Allows to complete the json for login
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
       - description: PathID
         in: query
         name: pathid
@@ -210,6 +288,36 @@ paths:
           schema:
             type: string
       summary: Modify user password
+  /notifications:
+    get:
+      consumes:
+      - application/json
+      description: Get all the notifications from the users
+      parameters:
+      - description: Insert the page
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: status ok
+          schema:
+            type: string
+        "400":
+          description: Coudn´t get the notifications
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            type: string
+      summary: Get notifications
   /passwordRecovery:
     put:
       description: send email at the person what forgot the password
@@ -279,6 +387,10 @@ paths:
         name: surname
         required: true
         type: string
+      - description: role
+        in: formData
+        name: role
+        type: string
       produces:
       - application/json
       responses:
@@ -305,4 +417,50 @@ paths:
           schema:
             type: string
       summary: creates the user register in the db
+  /validateOrModifyUserPath:
+    put:
+      consumes:
+      - application/json
+      description: Validate and modify the user career path if you are the admin
+      parameters:
+      - description: Allows to complete the json for login
+        in: body
+        name: body-json
+        required: true
+        schema:
+          type: string
+      - description: pathID
+        in: query
+        name: pathid
+        required: true
+        type: string
+      - description: userID
+        in: query
+        name: userid
+        required: true
+        type: string
+      - description: message
+        in: query
+        name: message
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Path has been modified
+          schema:
+            type: string
+        "400":
+          description: 'could send feedback to user. '
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            type: string
+      summary: Validate and modify the user path
 swagger: "2.0"

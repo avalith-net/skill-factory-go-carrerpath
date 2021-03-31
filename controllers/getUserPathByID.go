@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//GetUserPathByID
+//GetUserPathByID godoc
 // @Summary shows a complete user's career path
 // @Description get user careerpath
 // @User get-struct-by-json
