@@ -32,6 +32,114 @@ paths:
           schema:
             type: string
       summary: Create new career path
+  /createRelatedUserPath:
+    post:
+      description: allows you to create a new user's path relation if you are an admin
+      parameters:
+      - description: PathID
+        in: query
+        name: pathid
+        required: true
+        type: string
+      - description: UserID
+        in: query
+        name: userid
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User successfuly related to the selected path
+          schema:
+            type: string
+        "400":
+          description: couldn´t create user path relation
+          schema:
+            type: string
+        default:
+          description: error
+          schema:
+            type: string
+      summary: create the user's path relation
+  /getPath:
+    get:
+      consumes:
+      - application/json
+      description: get user careerpath
+      parameters:
+      - description: ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: success show careerpath
+          headers:
+            Token:
+              description: jwtKey
+              type: string
+          schema:
+            type: string
+        "400":
+          description: missing id parameter
+          schema:
+            type: string
+        "404":
+          description: error occurred looking the path
+          schema:
+            type: string
+        default:
+          description: Error show careerpath
+          schema:
+            type: string
+      summary: shows a complete original career path
+  /getUserPath:
+    get:
+      consumes:
+      - application/json
+      description: get user careerpath
+      parameters:
+      - description: pathID
+        in: query
+        name: pathid
+        required: true
+        type: string
+      - description: userID
+        in: query
+        name: userid
+        required: true
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: status ok
+          schema:
+            type: string
+        "400":
+          description: user not related with given path
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            type: string
+      summary: shows a complete user's career path
   /login:
     post:
       consumes:
@@ -197,42 +305,4 @@ paths:
           schema:
             type: string
       summary: creates the user register in the db
-  /userpath:
-    get:
-      consumes:
-      - application/json
-      description: get user careerpath
-      parameters:
-      - description: ID
-        in: query
-        name: id
-        required: true
-        type: string
-      - description: Token
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      responses:
-        "200":
-          description: status ok
-          headers:
-            Token:
-              description: jwtKey
-              type: string
-          schema:
-            type: string
-        "400":
-          description: missing id parameter
-          schema:
-            type: string
-        "404":
-          description: error occurred looking for the path
-          schema:
-            type: string
-        default:
-          description: Error
-          schema:
-            type: string
-      summary: shows a complete original career path
 swagger: "2.0"

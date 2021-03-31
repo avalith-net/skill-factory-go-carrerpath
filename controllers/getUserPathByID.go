@@ -16,13 +16,11 @@ import (
 // @Param userid query string true "userID"
 // @Param Authorization header string true "Token"
 // @Success 200 {string} string "status ok"
-// @Header 200 {string} Token "jwtKey"
 // @Failure 400 {string} string "missing path id parameter"
 // @Failure 400 {string} string "missing user path id parameter"
 // @Failure 400 {string} string "user not related with given path"
 // @Failure default {string} string "Error"
 // @Router /getUserPath [get]
-
 func GetUserPathByID(c *gin.Context) {
 	pathID := c.Query("pathid")
 	userID := c.Query("userid")

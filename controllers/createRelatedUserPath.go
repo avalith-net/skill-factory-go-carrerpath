@@ -26,7 +26,6 @@ import (
 // @Success 200 {string} string "User successfuly related to the selected path"
 // @Failure default {string} string "error"
 // @Router /createRelatedUserPath [post]
-
 func CreateRelatedUser(c *gin.Context) {
 	PathID := c.Query("pathid")
 	UserID := c.Query("userid")

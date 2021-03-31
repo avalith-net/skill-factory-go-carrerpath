@@ -19,7 +19,7 @@ import (
 // @Failure 400 {string} string "missing id parameter"
 // @Failure 404 {string} string "error occurred looking the path"
 // @Failure default {string} string "Error show careerpath"
-// @Router /userpath [get]
+// @Router /getPath [get]
 func GetPathByID(c *gin.Context) {
 	ID := c.Query("id")
 	if len(ID) < 1 {

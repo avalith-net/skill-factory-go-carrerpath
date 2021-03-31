@@ -71,6 +71,167 @@ var doc = `{
                 }
             }
         },
+        "/createRelatedUserPath": {
+            "post": {
+                "description": "allows you to create a new user's path relation if you are an admin",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "create the user's path relation",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "PathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UserID",
+                        "name": "userid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfuly related to the selected path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "couldn´t create user path relation",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getPath": {
+            "get": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "shows a complete original career path",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success show careerpath",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing id parameter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "error occurred looking the path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error show careerpath",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getUserPath": {
+            "get": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "shows a complete user's career path",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "pathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "userID",
+                        "name": "userid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "status ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "user not related with given path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "description": "get the email and password to access",
@@ -302,63 +463,6 @@ var doc = `{
                     },
                     "default": {
                         "description": "error in register",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/userpath": {
-            "get": {
-                "description": "get user careerpath",
-                "consumes": [
-                    "application/json"
-                ],
-                "summary": "shows a complete original career path",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "status ok",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "headers": {
-                            "Token": {
-                                "type": "string",
-                                "description": "jwtKey"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "missing id parameter",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "error occurred looking for the path",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "default": {
-                        "description": "Error",
                         "schema": {
                             "type": "string"
                         }
