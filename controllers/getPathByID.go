@@ -14,11 +14,11 @@ import (
 // @Accept  json
 // @Param id query string true "ID"
 // @Param Authorization header string true "Token"
-// @Success 200 {string} string "status ok"
+// @Success 200 {string} string "success show careerpath"
 // @Header 200 {string} Token "jwtKey"
 // @Failure 400 {string} string "missing id parameter"
-// @Failure 404 {string} string "error occurred looking for the path"
-// @Failure default {string} string "Error"
+// @Failure 404 {string} string "error occurred looking the path"
+// @Failure default {string} string "Error show careerpath"
 // @Router /userpath [get]
 func GetPathByID(c *gin.Context) {
 	ID := c.Query("id")
