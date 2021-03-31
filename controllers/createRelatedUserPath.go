@@ -39,7 +39,7 @@ func CreateRelatedUser(c *gin.Context) {
 		return
 	}
 
-	//consultar si ya existe una relacion entre el user y el path
+	//consults if a relation between the user and the path already exist
 	if _, status, _, _ := database.ConsultUserPath(UserID, PathID); status {
 		c.JSON(http.StatusBadRequest, "User is already related with the given path")
 		return
