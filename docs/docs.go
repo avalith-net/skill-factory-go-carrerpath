@@ -315,7 +315,7 @@ var doc = `{
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "shows a given user career path",
+                "summary": "shows a complete original career path",
                 "parameters": [
                     {
                         "type": "string",
@@ -334,7 +334,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success show careerpath",
+                        "description": "status ok",
                         "schema": {
                             "type": "string"
                         },
@@ -352,13 +352,13 @@ var doc = `{
                         }
                     },
                     "404": {
-                        "description": "error occurred looking the path",
+                        "description": "error occurred looking for the path",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "default": {
-                        "description": "Error show user path ",
+                        "description": "Error",
                         "schema": {
                             "type": "string"
                         }
