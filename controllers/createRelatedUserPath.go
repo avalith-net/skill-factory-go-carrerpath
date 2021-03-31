@@ -8,6 +8,25 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//CreateRelatedUser godoc
+// @Summary create the user's path relation
+// @Description allows you to create a new user's path relation if you are an admin
+// @User get-struct-by-json
+// @Produce json
+// @Success 200 {string} string "User successfuly related to the selected path"
+// @Param pathid query string true "PathID"
+// @Param userid query string true "UserID"
+// @Param Authorization header string true "Token"
+// @Header 200 {string} Token "jwtKey"
+// @Failure 400 {string} string "missing User id"
+// @Failure 400 {string} string "missing Path id"
+// @Failure 400 {string} string "User is already related with the given path"
+// @Failure 400 {string} string "Error in the created realtionship"
+// @Failure 400 {string} string "couldn´t create user path relation"
+// @Success 200 {string} string "User successfuly related to the selected path"
+// @Failure default {string} string "error"
+// @Router /createRelatedUserPath [post]
+
 func CreateRelatedUser(c *gin.Context) {
 	PathID := c.Query("pathid")
 	UserID := c.Query("userid")
@@ -48,5 +67,5 @@ func CreateRelatedUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, ("User successfuly related to the selected path."))
+	c.JSON(http.StatusCreated, ("User successfuly related to the selected path"))
 }
