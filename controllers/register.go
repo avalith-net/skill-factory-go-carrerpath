@@ -25,6 +25,7 @@ import (
 // @Param email formData string true "email"
 // @Param profilePhoto formData file true "profilePhoto"
 // @Param surname formData string true "surname"
+// @Param role formData string false "role"
 // @Success 200 {string} Token "user successfully registered"
 // @Header 200 {string} Token "jwtKey"
 // @Failure 400,404 {string} string "something went wrong with the given data, error or the given email is already in use"

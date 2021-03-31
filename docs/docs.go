@@ -24,6 +24,114 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/addCertificate": {
+            "patch": {
+                "description": "allows you add a certificate to your skill",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "Add a new certificate",
+                "parameters": [
+                    {
+                        "description": "Complete the json to create new path",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "pathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Certificate added. Congratulations!",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "could not notify the admin",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/addSkill": {
+            "patch": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "add new skill to the user path",
+                "parameters": [
+                    {
+                        "description": "Allows to complete the json for login",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Insert path id",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Skills added, the admin will check them, please wait...",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Couldn´t add the skills to the path: ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/createPath": {
             "post": {
                 "description": "allows you to create a new path if you are an admin",
@@ -64,6 +172,176 @@ var doc = `{
                     },
                     "default": {
                         "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/createRelatedUserPath": {
+            "post": {
+                "description": "allows you to create a new user's path relation if you are an admin",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "create the user's path relation",
+                "parameters": [
+                    {
+                        "description": "Allows to complete the json for login",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "PathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UserID",
+                        "name": "userid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfuly related to the selected path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "couldn´t create user path relation",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getPath": {
+            "get": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "shows a complete original career path",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success show careerpath",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "Token": {
+                                "type": "string",
+                                "description": "jwtKey"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing id parameter",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "error occurred looking the path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error show careerpath",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getUserPath": {
+            "get": {
+                "description": "get user careerpath",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "shows a complete user's career path",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "pathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "userID",
+                        "name": "userid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "status ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "user not related with given path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
                         "schema": {
                             "type": "string"
                         }
@@ -174,6 +452,51 @@ var doc = `{
                 }
             }
         },
+        "/notifications": {
+            "get": {
+                "description": "Get all the notifications from the users",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "Get notifications",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Insert the page",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "status ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Coudn´t get the notifications",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/passwordRecovery": {
             "put": {
                 "description": "send email at the person what forgot the password",
@@ -273,6 +596,12 @@ var doc = `{
                         "name": "surname",
                         "in": "formData",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -309,18 +638,41 @@ var doc = `{
                 }
             }
         },
-        "/userpath": {
-            "get": {
-                "description": "get user careerpath",
+        "/validateOrModifyUserPath": {
+            "put": {
+                "description": "Validate and modify the user career path if you are the admin",
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "shows a given user career path",
+                "summary": "Validate and modify the user path",
                 "parameters": [
                     {
+                        "description": "Allows to complete the json for login",
+                        "name": "body-json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "type": "string",
-                        "description": "ID",
-                        "name": "id",
+                        "description": "pathID",
+                        "name": "pathid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "userID",
+                        "name": "userid",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "message",
+                        "name": "message",
                         "in": "query",
                         "required": true
                     },
@@ -334,31 +686,19 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success show careerpath",
+                        "description": "Path has been modified",
                         "schema": {
                             "type": "string"
-                        },
-                        "headers": {
-                            "Token": {
-                                "type": "string",
-                                "description": "jwtKey"
-                            }
                         }
                     },
                     "400": {
-                        "description": "missing id parameter",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "error occurred looking the path",
+                        "description": "could send feedback to user. ",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "default": {
-                        "description": "Error show user path ",
+                        "description": "Error",
                         "schema": {
                             "type": "string"
                         }

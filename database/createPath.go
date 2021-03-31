@@ -7,7 +7,6 @@ import (
 	"github.com/avalith-net/skill-factory-go-carrerpath/models"
 )
 
-//debe ser general sin verificacion de id
 //PathUpdate is a function
 func CreatePath(pathUser models.Path) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
